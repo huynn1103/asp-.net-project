@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+}
+
+<form action="#">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" class="form-control" placeholder="Nhập giá trị cần tìm...">
+        <span class="input-group-btn">
+            <button class="btn btn-info btn-flat">Tìm kiếm</button>
+            <a href="~/Account/Create" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i> Bổ sung
+            </a>
+        </span>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-md-12" style="padding: 1em">
+        Có tất cả 100 tài khoản. Bạn đang ở trang 1 trên tổng số 10 trang.
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr class="bg-primary">
+                <th>Tên tài khoản</th>
+                <th>Họ và tên đệm</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Thời điểm đăng ký</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 8; i++)
+            {
+            <tr>
+                <td>huyntp1103</td>
+                <td>Nguyễn Nhật</td>
+                <td>Huy</td>
+                <td>huyntp1103@gmail.com</td>
+                <td>0935309527</td>
+                <td>30/09/2022</td>
+                <td>Tạm khóa</td>
+                <td class="text-right">
+                    <a href="~/Account/Edit" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a href="~/Account/Delete" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <ul class="pagination">
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
+    </div>
+</div>
+

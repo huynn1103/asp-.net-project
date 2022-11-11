@@ -1,0 +1,39 @@
+﻿@model SV19T1081011.DomainModels.UserAccount
+@{
+    ViewBag.Title = "Quản lý thông tin tài khoản cá nhân";
+}
+
+<div class="box box-primary">
+    <div class="box-body">
+        <form>
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+            <input type="hidden" name="UserName" value="@Model.UserName" />
+            <div class="form-group">
+                <label for="UserName">Tên đăng nhập:</label>
+                <input type="text" class="form-control" name="UserName" readonly="readonly" value="@Model.UserName">
+            </div>
+            <div class="form-group">
+                <label for="FullName">Họ và tên:</label>
+                <input type="text" class="form-control" name="FullName" readonly="readonly" value="@Model.FirstName @Model.LastName">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="text" class="form-control" name="Email" readonly="readonly" value="@Model.Email">
+            </div>
+            <div class="form-group">
+                <label for="Phone">Số điện thoại:</label>
+                <input type="text" class="form-control" name="Phone" readonly="readonly" value="@Model.Phone">
+            </div>
+
+            <a href="~/Account/Edit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-edit"></i> Chỉnh sửa thông tin
+            </a>
+            <a href="~/Account/ChangePassword" class="btn btn-primary">
+                <i class="glyphicon glyphicon-edit"></i> Đổi mật khẩu
+            </a>
+            <a href="~/" class="btn btn-warning">
+                Quay lại
+            </a>
+        </form>
+    </div>
+</div>

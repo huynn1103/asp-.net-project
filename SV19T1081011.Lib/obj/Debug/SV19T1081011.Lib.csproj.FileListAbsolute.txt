@@ -1,0 +1,6 @@
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.Lib\bin\Debug\SV19T1081011.Lib.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.Lib\bin\Debug\SV19T1081011.Lib.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.Lib\obj\Debug\SV19T1081011.Lib.csproj.AssemblyReference.cache
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.Lib\obj\Debug\SV19T1081011.Lib.csproj.CoreCompileInputs.cache
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.Lib\obj\Debug\SV19T1081011.Lib.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.Lib\obj\Debug\SV19T1081011.Lib.pdb

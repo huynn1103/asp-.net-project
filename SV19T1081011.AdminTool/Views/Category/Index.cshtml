@@ -1,0 +1,74 @@
+﻿@model SV19T1081011.AdminTool.Models.PaginationSearchInput
+@{
+    ViewBag.Title = "Quản lý phân loại tin";
+}
+
+<form id="formSearch" action="~/Category/Search" onsubmit="return false;">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        @Html.TextBoxFor(m => m.SearchValue,
+                        new
+                             {
+                            @class = "form-control",
+                            @placeholder = "Nhập giá trị cần tìm...",
+                            @autofocus = "autofocus"
+                        })
+        @Html.HiddenFor(m => m.PageSize)
+
+        @*<input name="searchValue" type="text" class="form-control" placeholder="Nhập giá trị cần tìm..." autofocus="autofocus">*@
+        <span class="input-group-btn">
+            <button id="buttonSearch" class="btn btn-info btn-flat">Tìm kiếm</button>
+            <a href="~/Category/Create" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i> Bổ sung
+            </a>
+        </span>
+    </div>
+</form>
+
+<div id="searchResult">
+
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#buttonSearch").click(function () {
+                doSearch(1);
+            })
+            doSearch(@Model.Page);
+        })
+
+        function doSearch(page) {
+            var link = $("#formSearch").prop("action");
+            var data = $("#formSearch").serializeArray();
+            data.push({ "name": "page", "value": page });
+
+            $.ajax({
+                url: link,
+                type: "POST",
+                data: data,
+                async: false,
+                eror: function () {
+                    alert("Your request is not valid!");
+                },
+                success: function (data) {
+                    $("#searchResult").html(data);
+                }
+            })
+        }
+
+        function changeOrder(id, moveUp, page) {
+            $.ajax({
+                url: "/Category/ChangeOrder/" + id + "?moveUp=" + moveUp,
+                type: "POST",
+                async: false,
+                eror: function () {
+                    alert("Your request is not valid!");
+                },
+                success: function (data) {
+                    doSearch(page);
+                }
+            })
+        }
+    </script>
+}

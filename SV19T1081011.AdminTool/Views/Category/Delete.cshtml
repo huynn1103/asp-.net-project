@@ -1,0 +1,33 @@
+﻿@model SV19T1081011.DomainModels.PostCategory
+@{
+
+}
+
+<div class="box box-danger">
+    <div class="box-body">
+        <form action="~/Category/Delete/@Model.CategoryId" method="post">
+            <div class="form-group">
+                <label for="CategoryName">Tên phân loại:</label>
+                <p class="form-control-static">@Model.CategoryName</p>
+            </div>
+            <div class="form-group">
+                <label for="CategoryUrlName">Tên trên URL:</label>
+                <p class="form-control-static">@Model.CategoryUrlName</p>
+            </div>
+            <div class="form-group">
+                <label for="CategoryDescriptions">Mô tả:</label>
+                <p class="form-control-static" style="border: 1px dotted #e1e1e1">@Model.CategoryDescriptions</p>
+            </div>
+            @if (!SV19T1081011.BusinessLayers.ContentService.InUsedCategory(Model.CategoryId))
+            {
+                <button type="submit" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle" s></i> Đồng ý xóa
+                </button>
+            }
+
+            <a href="~/Category" class="btn btn-warning">
+                Quay lại
+            </a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@using SV19T1081011.BusinessLayers
+@model SV19T1081011.DomainModels.Post
+@{
+    ViewBag.Title = "Xóa bài viết";    
+}
+
+<div class="box box-danger">
+    <div class="box-header">
+        <h3>@Model.Title</h3>
+    </div>
+    <div class="box-body">
+        <form action="~/Post/Delete/@Model.PostId" method="post">
+            <div class="row">
+                <div class="col-sm-9">
+                    @Html.Raw(Model.FullContent)
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group-sm">
+                        <label>Phân loại tin:</label>
+                        <p class="form-control">@Model.Category.CategoryName</p>
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Thời điểm đăng bài:</label>
+                        <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.CreatedTime)</p>
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Người viết bài:</label>
+                        <p class="form-control">@Model.Creator.FullName</p>
+                    </div>
+                    <div class="form-group-sm">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            Xóa bài viết
+                        </button>
+                        <a href="~/Post" class="btn btn-default">
+                            Quay lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

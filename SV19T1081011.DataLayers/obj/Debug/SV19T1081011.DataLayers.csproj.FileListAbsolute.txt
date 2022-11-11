@@ -1,0 +1,9 @@
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\bin\Debug\SV19T1081011.DataLayers.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\bin\Debug\SV19T1081011.DataLayers.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\bin\Debug\SV19T1081011.DomainModels.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\bin\Debug\SV19T1081011.DomainModels.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\obj\Debug\SV19T1081011.DataLayers.csproj.AssemblyReference.cache
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\obj\Debug\SV19T1081011.DataLayers.csproj.CoreCompileInputs.cache
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\obj\Debug\SV19T1081011.DataLayers.csproj.CopyComplete
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\obj\Debug\SV19T1081011.DataLayers.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.DataLayers\obj\Debug\SV19T1081011.DataLayers.pdb

@@ -1,0 +1,109 @@
+﻿@model SV19T1081011.DomainModels.Post
+@{
+    List<SelectListItem> listAllowComment = new List<SelectListItem>();
+    listAllowComment.Add(new SelectListItem() { Value = "true", Text = "Cho phép" });
+    listAllowComment.Add(new SelectListItem() { Value = "false", Text = "Không cho phép" });
+
+    List<SelectListItem> listIsHidden = new List<SelectListItem>();
+    listIsHidden.Add(new SelectListItem() { Value = "true", Text = "Ẩn bản tin" });
+    listIsHidden.Add(new SelectListItem() { Value = "false", Text = "Hiển thị bản tin" });
+}
+
+<div class="box box-primary">
+    <div class="box-body">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                @Html.Raw(ViewBag.Message)
+            </div>
+        }
+        <form action="~/Post/Save" method="post" enctype="multipart/form-data">
+            @Html.HiddenFor(m => m.PostId)
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group-sm">
+                        <label>Tiêu đề: @Html.ValidationMessageFor(m => m.Title)</label>
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @autofocus = "autofocus" })
+
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Tóm tắt bài viết:</label>
+                        @Html.TextAreaFor(m => m.BriefContent, new { @class = "form-control", @rows = "3" })
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Nội dung toàn văn: @Html.ValidationMessageFor(m => m.FullContent)</label>
+                        @Html.TextAreaFor(m => m.FullContent, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Tiêu đề hiển thị trên URL: </label>
+                        <div>
+                            <small><i>Gợi ý: không nhập mục này để tự động tạo dựa trên tiêu đề</i></small>
+                        </div>
+                        @Html.TextBoxFor(m => m.UrlTitle, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group-sm">
+                        <label>Phân loại tin:</label>
+                        @Html.DropDownListFor(m => m.CategoryId, SelectListHelper.PostCategories(), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Cho phép bình luận?</label>
+                        @Html.DropDownListFor(m => m.AllowComment, listAllowComment, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group-sm">
+                        <label>Ẩn/hiện bản tin?</label>
+                        @Html.DropDownListFor(m => m.IsHidden, listIsHidden, new { @class = "form-control" })
+                    </div>
+                    @if (Model.Creator != null)
+                    {
+                        <div class="form-group-sm">
+                            <label>Thời điểm đăng bài:</label>
+                            <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.CreatedTime)</p>
+                        </div>
+                        <div class="form-group-sm">
+                            <label>Người viết bài:</label>
+                            <p class="form-control">@Model.Creator.FullName</p>
+                        </div>
+                    }
+                    <div class="form-group-sm">
+                        <label>Ảnh minh họa:</label>
+                        <div>
+                            <small><i>Hướng dẫn: Click trên ảnh để chọn ảnh minh họa</i></small>
+                        </div>
+                        <div class="input-group">
+                            @Html.HiddenFor(m => m.Image)
+                            <label for="uploadImage" style="cursor:pointer" title="Click để chọn ảnh">
+                                <img id="postImage" src="~/@Model.Image" class="img-thumbnail" style="height:250px" alt="">
+                            </label>
+                            <input type="file" id="uploadImage" name="uploadImage" accept="image/*" style="display:none"
+                                   onchange="document.getElementById('postImage').src = window.URL.createObjectURL(this.files[0])" />
+                        </div>
+                    </div>
+                    <div class="form-group-sm">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-floppy-disk"></i>
+                            Lưu bài viết
+                        </button>
+                        <a href="~/Post" class="btn btn-warning">
+                            Quay lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Themes/bower_components/ckeditor/ckeditor.js"></script>        
+    <script>
+        $(document).ready(function () {            
+            CKEDITOR.replace('FullContent', {
+                height: '350px'
+            });
+        });
+    </script>
+
+}

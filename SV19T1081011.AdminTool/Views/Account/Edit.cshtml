@@ -1,0 +1,43 @@
+﻿@model SV19T1081011.DomainModels.UserAccount
+@{
+
+}
+
+<div class="box box-primary">
+    <div class="box-body">
+        <form action="~/Account/Edit" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+            <input type="hidden" name="UserName" value="@Model.UserName" />
+            <div class="form-group">
+                <label for="FirstName">Họ và tên đệm:</label>
+                <input type="text" class="form-control" name="FirstName" value="@Model.FirstName">
+                @Html.ValidationMessage("FirstName", new { @style = "color: #ff0000;" })
+            </div>
+            <div class="form-group">
+                <label for="LastName">Tên:</label>
+                <input type="text" class="form-control" name="LastName" value="@Model.LastName">
+                @Html.ValidationMessage("LastName", new { @style = "color: #ff0000;" })
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="text" class="form-control" name="Email" value="@Model.Email">
+                @Html.ValidationMessage("Email", new { @style = "color: #ff0000;" })
+            </div>
+            <div class="form-group">
+                <label for="Phone">Số điện thoại:</label>
+                <input type="text" class="form-control" name="Phone" value="@Model.Phone">
+                @Html.ValidationMessage("Phone", new { @style = "color: #ff0000;" })
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-floppy-disk"></i> Submit
+            </button>
+
+            <a href="~/Account" class="btn btn-warning">
+                Quay lại
+            </a>
+            @*@Html.ValidationSummary()*@
+        </form>
+    </div>
+</div>

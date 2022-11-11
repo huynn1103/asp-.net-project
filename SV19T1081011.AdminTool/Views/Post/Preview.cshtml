@@ -1,0 +1,62 @@
+﻿@model SV19T1081011.DomainModels.Post
+@{
+
+}
+<div class="box">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-8">
+                <div style="margin-bottom:10px;">
+                    <span style="font-size:16px; font-weight:bold">@Model.Title</span>
+                    <span style="font-size:10px; color:#808080">@string.Format("({0:dd/MM/yyyy HH:mm})", Model.CreatedTime)</span>
+                </div>
+                <div class="full-content">
+                    @Html.Raw(Model.FullContent)
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-md-12 form-group-sm" style="min-height:200px">
+                        <div style="margin-bottom:10px;">
+                            <span style="font-size:16px; font-weight:bold">@Model.Title</span>
+                        </div>
+                        <div style="margin-top:20px; color:#808080">
+                            <img src="~/@Model.Image" style="float:left; padding-right:10px; height:150px;" />
+                            <p>@Model.BriefContent</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group-sm">
+                        <label>Phân loại tin:</label>
+                        <p class="form-control">@Model.Category.CategoryName</p>
+                    </div>
+                    <div class="col-md-12 form-group-sm">
+                        <label>Thời điểm đăng bài:</label>
+                        <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.CreatedTime)</p>
+                    </div>
+                    <div class="col-md-12 form-group-sm">
+                        <label>Người viết bài:</label>
+                        <p class="form-control">@Model.Creator.FullName</p>
+                    </div>
+                    <div class="col-md-12 form-group-sm">
+                        <a class="btn btn-primary" href="~/Post/Edit/@Model.PostId">Sửa bài viết</a>
+                        <a class="btn btn-danger" href="~/Post/Delete/@Model.PostId">Xóa bài viết</a>
+                        <a class="btn btn-default" href="~/Post">Quay lại</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section styles {
+    <style>
+        .full-content img {
+            max-width:600px;            
+        }
+    </style>    
+}
+
+
