@@ -16,6 +16,7 @@ namespace SV19T1081011.BusinessLayers
     {
         private static readonly IPostCategoryDAL postCategoryDB;
         private static readonly IPostDAL postDB;
+        private static readonly IPostCommentDAL postCommentDB;
 
         /// <summary>
         /// Ctor
@@ -26,6 +27,7 @@ namespace SV19T1081011.BusinessLayers
 
             postCategoryDB = new DataLayers.SqlServer.PostCategoryDAL(connectionString);
             postDB = new DataLayers.SqlServer.PostDAL(connectionString);
+            postCommentDB = new DataLayers.SqlServer.PostCommentDAL(connectionString);
         }
 
         #region Post Category
@@ -163,6 +165,14 @@ namespace SV19T1081011.BusinessLayers
             return postDB.List(page, pageSize, searchValue, categoryId).ToList();
         }
         /// <summary>
+        /// Lấy toàn bộ Post
+        /// </summary>
+        /// <returns></returns>
+        public static List<Post> ListPosts()
+        {
+            return postDB.List(1, 0, "").ToList();
+        }
+        /// <summary>
         /// Lấy bài viết theo id
         /// </summary>
         /// <param name="postId"></param>
@@ -216,6 +226,59 @@ namespace SV19T1081011.BusinessLayers
         public static bool DeletePost(long postId)
         {
             return postDB.Delete(postId);
+        }
+        #endregion
+
+        #region Post Comment
+        /// <summary>
+        /// Tìm kiếm, hiển thị danh sách comment dưới dạng phân trang
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="searchValue"></param>
+        /// <param name="categoryId"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static List<PostComment> ListComments(int page, int pageSize, string searchValue, long postId, out int rowCount)
+        {
+            rowCount = postCommentDB.Count(searchValue, postId);
+            return postCommentDB.List(page, pageSize, searchValue, postId).ToList();
+        }
+        /// <summary>
+        /// Lấy comment theo id
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public static PostComment GetComment(long commentId)
+        {
+            return postCommentDB.Get(commentId);
+        }
+        /// <summary>
+        /// Bổ sung comment
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static long AddComment(PostComment data)
+        {
+            return postCommentDB.Add(data);
+        }
+        /// <summary>
+        /// Cập nhật comment
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static bool UpdateComment(PostComment data)
+        {
+            return postCommentDB.Update(data);
+        }
+        /// <summary>
+        /// Xóa comment
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public static bool DeleteComment(long commentId)
+        {
+            return postCommentDB.Delete(commentId);
         }
         #endregion
     }

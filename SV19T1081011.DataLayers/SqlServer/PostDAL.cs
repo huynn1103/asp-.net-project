@@ -185,7 +185,8 @@ namespace SV19T1081011.DataLayers.SqlServer
 	                                        ) as p
                                             LEFT JOIN UserAccount as u ON p.UserId = u.UserId
                                             LEFT JOIN PostCategory as c ON p.CategoryId = c.CategoryId
-                                        WHERE p.RowNumber BETWEEN (@Page - 1) * @PageSize + 1 AND @Page * @PageSize 
+                                        WHERE (@pageSize = 0)
+                                           OR (p.RowNumber BETWEEN (@Page - 1) * @PageSize + 1 AND @Page * @PageSize)
                                         ORDER BY p.RowNumber";
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Page", page);

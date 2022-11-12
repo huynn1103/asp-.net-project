@@ -20,14 +20,14 @@ namespace SV19T1081011.DataLayers
         /// <param name="searchValue"></param>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        IList<PostComment> List(int page = 1, int pageSize = 20, string searchValue = "", int postId = 0);
+        IList<PostComment> List(int page = 1, int pageSize = 20, string searchValue = "", long postId = 0);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="searchValue"></param>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        int Count(string searchValue = "", int postId = 0);
+        int Count(string searchValue = "", long postId = 0);
         /// <summary>
         /// 
         /// </summary>

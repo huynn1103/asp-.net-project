@@ -48,7 +48,6 @@ namespace SV19T1081011.DataLayers.SqlServer
                 Post = new Post()
                 {
                     PostId = Convert.ToInt64(dbReader["PostId"]),
-                    CreatedTime = Convert.ToDateTime(dbReader["PostCreatedTime"]),
                     Title = Convert.ToString(dbReader["Title"]),
                     BriefContent = Convert.ToString(dbReader["BriefContent"]),
                     UrlTitle = Convert.ToString(dbReader["UrlTitle"])
@@ -61,7 +60,7 @@ namespace SV19T1081011.DataLayers.SqlServer
         /// <param name="searchValue"></param>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        public int Count(string searchValue = "", int postId = 0)
+        public int Count(string searchValue = "", long postId = 0)
         {
             if (searchValue != "")
                 searchValue = $"%{searchValue}%";
@@ -72,9 +71,9 @@ namespace SV19T1081011.DataLayers.SqlServer
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT	COUNT(*)
-                                        FROM	PostComment as p
-                                        WHERE	((@SearchValue = N'') OR (p.CommentContent LIKE @SearchValue))
-	                                        AND	((@PostId = 0) OR (p.PostId = @PostId))";
+                                        FROM	PostComment as c
+                                        WHERE	((@SearchValue = N'') OR (c.CommentContent LIKE @SearchValue))
+	                                        AND	((@PostId = 0) OR (c.PostId = @PostId))";
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@SearchValue", searchValue);
                     cmd.Parameters.AddWithValue("@PostId", postId);
@@ -98,7 +97,7 @@ namespace SV19T1081011.DataLayers.SqlServer
                 {
                     cmd.CommandText = @"SELECT c.*,
                                                u.UserName, u.FirstName, u.LastName, u.Email, u.Phone,
-                                               p.CreatedTime AS 'PostCreatedTime', p.Title, p.BriefContent, p.UrlTitle
+                                               p.Title, p.BriefContent, p.UrlTitle
                                         FROM PostComment as c
                                              LEFT JOIN UserAccount as u ON c.UserId = u.UserId
                                              LEFT JOIN Post as p ON c.PostId = p.PostId
@@ -124,7 +123,7 @@ namespace SV19T1081011.DataLayers.SqlServer
         /// <param name="searchValue"></param>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        public IList<PostComment> List(int page = 1, int pageSize = 20, string searchValue = "", int postId = 0)
+        public IList<PostComment> List(int page = 1, int pageSize = 20, string searchValue = "", long postId = 0)
         {
             if (searchValue != "")
                 searchValue = $"%{searchValue}%";
@@ -136,14 +135,14 @@ namespace SV19T1081011.DataLayers.SqlServer
                 {
                     cmd.CommandText = @"SELECT  c.*,
                                                 u.UserName, u.FirstName, u.LastName, u.Email, u.Phone,
-                                                p.CreatedTime AS 'PostCreatedTime', p.Title, p.BriefContent, p.UrlTitle
+                                                p.Title, p.BriefContent, p.UrlTitle
                                         FROM
 	                                        (
-		                                        SELECT	c.CommentId, c.CreatedTime, c.CommentContent, c.IsAccepted, c.UserId, c.PostId
-				                                        ROW_NUMBER() OVER (ORDER BY c.@CommentId DESC) AS RowNumber
+		                                        SELECT	c.CommentId, c.CreatedTime, c.CommentContent, c.IsAccepted, c.UserId, c.PostId,
+				                                        ROW_NUMBER() OVER (ORDER BY c.CommentId DESC) AS RowNumber
 		                                        FROM	PostComment as c
 		                                        WHERE	((@SearchValue = N'') OR (c.CommentContent LIKE @SearchValue))
-			                                        AND	((@PostId = 0) OR (p.PostId = @PostId))
+			                                        AND	((@PostId = 0) OR (c.PostId = @PostId))
 	                                        ) as c
                                             LEFT JOIN UserAccount as u ON c.UserId = u.UserId
                                             LEFT JOIN Post as p ON c.PostId = p.PostId

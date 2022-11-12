@@ -1,70 +1,55 @@
-﻿
+﻿@model SV19T1081011.AdminTool.Models.CommentSearchInput
 @{
     ViewBag.Title = "Quản lý bình luận";
+
+    List<SelectListItem> listPosts = SelectListHelper.Posts();
+    listPosts.Insert(0, new SelectListItem() { Value = "0", Text = "-- Tất cả bài viết --" });
 }
 
-<form action="#">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-        <input type="text" class="form-control" placeholder="Nhập giá trị cần tìm...">
-        <span class="input-group-btn">
-            <button class="btn btn-info btn-flat">Tìm kiếm</button>
-            <a href="~/Comment/Create" class="btn btn-primary">
-                <i class="glyphicon glyphicon-plus"></i> Bổ sung
-            </a>
-        </span>
-    </div>
-</form>
+<div class="box box-primary">
+    <div class="box-body ">
+        <form id="formSearch" action="~/Comment/Search">
+            @Html.HiddenFor(m => m.PageSize)
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    @Html.DropDownListFor(m => m.PostId, listPosts, new { @class = "form-control" })
+                </div>
+                <div class="col-md-9 form-group">
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.SearchValue, new { @class = "form-control", @placeholder = "Nhập giá trị cần tìm...", @autofocus = "autofocus" })
+                        <span class="input-group-btn">
+                            <button id="buttonSearch" type="button" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            <a href="~/Comment/Create" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-plus"></i> Nhập bình luận mới
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
 
-<div class="row">
-    <div class="col-md-12" style="padding: 1em">
-        Có tất cả 100 bình luận. Bạn đang ở trang 1 trên tổng số 10 trang.
-    </div>
-</div>
-
-<div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr class="bg-primary">
-                <th>Thời gian đăng</th>
-                <th>Nội dung</th>
-                <th>Hiển thị</th>
-                <th>Người đăng</th>
-                <th>Bài đăng</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < 8; i++)
-            {
-            <tr>
-                <td>30/09/2022</td>
-                <td>Tin chuẩn chưa anh?</td>
-                <td><input type="checkbox" name="isHidden"></td>
-                <td>Nguyễn Nhật Huy</td>
-                <td>VTV phốt Chi Pu</td>
-                <td class="text-right">
-                    <a href="~/Comment/Edit" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <a href="~/Comment/Delete" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<div class="row">
-    <div class="col-md-12 text-center">
-        <ul class="pagination">
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-        </ul>
+        </form>
     </div>
 </div>
+
+<div class="box box-success">
+    <div class="box-body" id="searchResult">
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/site.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#buttonSearch").click(function () {
+                paginationSearch(1);
+            });
+            $("#formSearch").submit(function (e) {
+                e.preventDefault();
+                paginationSearch(1);
+                return false;
+            });
+            paginationSearch(@Model.Page);
+        })
+    </script>
+}

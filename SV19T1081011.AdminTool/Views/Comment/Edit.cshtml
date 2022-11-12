@@ -1,0 +1,66 @@
+﻿@model SV19T1081011.DomainModels.PostComment
+@{
+    List<SelectListItem> listAccept = new List<SelectListItem>();
+    listAccept.Add(new SelectListItem() { Value = "true", Text = "Cho phép" });
+    listAccept.Add(new SelectListItem() { Value = "false", Text = "Không cho phép" });
+}
+
+<div class="box box-primary">
+    <div class="box-body">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                @Html.Raw(ViewBag.Message)
+            </div>
+        }
+        <form action="~/Comment/Save" method="post" enctype="multipart/form-data">
+            @Html.HiddenFor(m => m.PostId)
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group-sm">
+                        <label>Nội dung toàn văn: @Html.ValidationMessageFor(m => m.CommentContent)</label>
+                        @Html.TextAreaFor(m => m.CommentContent, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group-sm">
+                        <label>Chấp thuận bình luận?</label>
+                        @Html.DropDownListFor(m => m.IsAccepted, listAccept, new { @class = "form-control" })
+                    </div>
+                    @if (Model.Creator != null)
+                    {
+                        <div class="form-group-sm">
+                            <label>Thời điểm đăng bài:</label>
+                            <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.CreatedTime)</p>
+                        </div>
+                        <div class="form-group-sm">
+                            <label>Người viết bài:</label>
+                            <p class="form-control">@Model.Creator.FullName</p>
+                        </div>
+                    }
+                    <div class="form-group-sm">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-floppy-disk"></i>
+                            Lưu bình luận
+                        </button>
+                        <a href="~/Comment" class="btn btn-warning">
+                            Quay lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Themes/bower_components/ckeditor/ckeditor.js"></script>        
+    <script>
+        $(document).ready(function () {            
+            CKEDITOR.replace('CommentContent', {
+                height: '350px'
+            });
+        });
+    </script>
+}

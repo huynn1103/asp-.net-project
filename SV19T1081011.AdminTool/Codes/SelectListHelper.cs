@@ -25,5 +25,18 @@ namespace SV19T1081011.AdminTool
             }
             return list;
         }
+        /// <summary>
+        /// Danh sách phân loại tin
+        /// </summary>
+        /// <returns></returns>
+        public static List<SelectListItem> Posts()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var item in ContentService.ListPosts())
+            {
+                list.Add(new SelectListItem() { Value = item.PostId.ToString(), Text = item.Title });
+            }
+            return list;
+        }
     }
 }

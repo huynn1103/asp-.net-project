@@ -8,8 +8,9 @@ function paginationSearch(page) {
         type: "POST",
         data: data,
         async: false,
-        error: function () {
+        error: function (error) {
             alert("Your request is not valid!");
+            console.log(error);
         },
         success: function (data) {
             $("#searchResult").html(data);

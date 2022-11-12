@@ -1,0 +1,84 @@
+﻿@model SV19T1081011.AdminTool.Models.CommentSearchOutput
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        Có tất cả <b>@Model.RowCount</b> bình luận.
+        Bạn đang ở trang <b>@Model.Page</b> trên tổng số <b>@Model.PageCount</b> trang.
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr class="bg-primary">
+                <th style="width:auto">Bình luận</th>
+                <th style="width:180px">Bài viết</th>
+                <th style="width:90px">Chấp thuận?</th>
+                <th style="width:80px">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    @*<td style="width:80px">
+                            <img src="~/@item.Image" style="width:80px;float:left;padding-right:10px;" />
+                        </td>*@
+                    <td class="text-justify">
+                        @*<p>
+                                <a href="~/Post/Preview/@item.UrlTitle/">
+                                    <b>@item.Title</b>
+                                </a>
+                            </p>*@
+                        <p>
+                            @item.CommentContent
+                        </p>
+                        <p style="font-size:0.8em; float: right;">
+                            @Html.Raw(string.Format("Đăng lúc <b>{0:dd/MM/yyyy HH:mm}</b> bởi <b>{1}</b>", item.CreatedTime, item.Creator.FullName))
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a href="~/Post/Preview/@item.Post.UrlTitle/">
+                                <b>@item.Post.Title</b>
+                            </a>
+                        </p>
+                    </td>
+                    <td class="text-center">@(item.IsAccepted ? "x" : "")</td>
+                    <td class="text-right">
+                        <a href="~/Comment/Delete/@item.CommentId" class="btn btn-xs btn-danger">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                        <a href="~/Comment/Edit/@item.CommentId" class="btn btn-xs btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (Model.PageCount > 1)
+{
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="pagination">
+                @for (int page = 1; page <= Model.PageCount; page++)
+                {
+                    if (page == Model.Page)
+                    {
+                        <li class="active"><a href="#">@page</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="javascript:;" onclick="paginationSearch(@page)">@page</a></li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+}
