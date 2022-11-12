@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPostCategoryDAL.cs" />
+    <Compile Include="IPostCommentDAL.cs" />
     <Compile Include="IPostDAL.cs" />
     <Compile Include="IUserAccountDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\PostCategoryDAL.cs" />
+    <Compile Include="SqlServer\PostCommentDAL.cs" />
     <Compile Include="SqlServer\PostDAL.cs" />
     <Compile Include="SqlServer\UserAccountDAL.cs" />
     <Compile Include="SqlServer\_BaseDAL.cs" />

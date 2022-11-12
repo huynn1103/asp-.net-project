@@ -35,6 +35,14 @@ namespace SV19T1081011.DomainModels
         ///
         ///</summary>
         public long PostId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Author Creator { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Post Post { get; set; }
     }
 
 }

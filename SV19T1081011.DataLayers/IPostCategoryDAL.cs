@@ -21,7 +21,7 @@ namespace SV19T1081011.DataLayers
         /// <returns></returns>
         IList<PostCategory> List(int page = 1, int pageSize = 20, string searchValue = "");
         /// <summary>
-        /// Đếm số lượng phân loại tin thoải điều kiện tìm kiếm
+        /// Đếm số lượng phân loại tin thoả điều kiện tìm kiếm
         /// </summary>
         /// <param name="searchValue">Tên loại tin cần tìm (chuỗi rỗng nếu lấy toàn bộ/không tìm kiếm)</param>
         /// <returns></returns>
