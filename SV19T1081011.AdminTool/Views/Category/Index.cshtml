@@ -30,32 +30,19 @@
 </div>
 
 @section scripts {
+    <script src="~/Scripts/site.js"></script>
     <script>
         $(document).ready(function () {
             $("#buttonSearch").click(function () {
-                doSearch(1);
+                paginationSearch(1);
             })
-            doSearch(@Model.Page);
+            $("#formSearch").submit(function (e) {
+                e.preventDefault();
+                paginationSearch(1);
+                return false;
+            });
+            paginationSearch(@Model.Page);
         })
-
-        function doSearch(page) {
-            var link = $("#formSearch").prop("action");
-            var data = $("#formSearch").serializeArray();
-            data.push({ "name": "page", "value": page });
-
-            $.ajax({
-                url: link,
-                type: "POST",
-                data: data,
-                async: false,
-                eror: function () {
-                    alert("Your request is not valid!");
-                },
-                success: function (data) {
-                    $("#searchResult").html(data);
-                }
-            })
-        }
 
         function changeOrder(id, moveUp, page) {
             $.ajax({
@@ -66,7 +53,7 @@
                     alert("Your request is not valid!");
                 },
                 success: function (data) {
-                    doSearch(page);
+                    paginationSearch(page);
                 }
             })
         }
