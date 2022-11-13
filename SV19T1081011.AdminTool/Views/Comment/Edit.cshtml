@@ -14,16 +14,20 @@
                 @Html.Raw(ViewBag.Message)
             </div>
         }
-        <form action="~/Comment/Save" method="post" enctype="multipart/form-data">
-            @Html.HiddenFor(m => m.PostId)
+        <form action="~/Comment/Save" method="post">
+            @Html.HiddenFor(m => m.CommentId)
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group-sm">
-                        <label>Nội dung toàn văn: @Html.ValidationMessageFor(m => m.CommentContent)</label>
+                        <label>Nội dung bình luận: @Html.ValidationMessageFor(m => m.CommentContent)</label>
                         @Html.TextAreaFor(m => m.CommentContent, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="col-sm-3">
+                    <div class="form-group-sm">
+                        <label>Bài viết:</label>
+                        @Html.DropDownListFor(m => m.PostId, SelectListHelper.Posts(), new { @class = "form-control" })
+                    </div>
                     <div class="form-group-sm">
                         <label>Chấp thuận bình luận?</label>
                         @Html.DropDownListFor(m => m.IsAccepted, listAccept, new { @class = "form-control" })
@@ -31,7 +35,7 @@
                     @if (Model.Creator != null)
                     {
                         <div class="form-group-sm">
-                            <label>Thời điểm đăng bài:</label>
+                            <label>Thời điểm bình luận:</label>
                             <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.CreatedTime)</p>
                         </div>
                         <div class="form-group-sm">

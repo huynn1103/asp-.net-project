@@ -26,7 +26,7 @@ namespace SV19T1081011.AdminTool
             return list;
         }
         /// <summary>
-        /// Danh sách phân loại tin
+        /// Danh sách bài viết
         /// </summary>
         /// <returns></returns>
         public static List<SelectListItem> Posts()

@@ -16,7 +16,7 @@
             <tr class="bg-primary">
                 <th style="width:auto">Bình luận</th>
                 <th style="width:180px">Bài viết</th>
-                <th style="width:90px">Chấp thuận?</th>
+                <th style="width:120px">Chấp thuận?</th>
                 <th style="width:80px">Thao tác</th>
             </tr>
         </thead>
@@ -34,7 +34,7 @@
                                 </a>
                             </p>*@
                         <p>
-                            @item.CommentContent
+                            @Html.Raw(item.CommentContent)
                         </p>
                         <p style="font-size:0.8em; float: right;">
                             @Html.Raw(string.Format("Đăng lúc <b>{0:dd/MM/yyyy HH:mm}</b> bởi <b>{1}</b>", item.CreatedTime, item.Creator.FullName))

@@ -165,7 +165,7 @@ namespace SV19T1081011.BusinessLayers
             return postDB.List(page, pageSize, searchValue, categoryId).ToList();
         }
         /// <summary>
-        /// Lấy toàn bộ Post
+        /// Lấy toàn bộ bài viết
         /// </summary>
         /// <returns></returns>
         public static List<Post> ListPosts()

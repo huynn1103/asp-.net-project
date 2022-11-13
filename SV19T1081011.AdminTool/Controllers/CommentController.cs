@@ -94,12 +94,11 @@ namespace SV19T1081011.AdminTool.Controllers
         public ActionResult Create()
         {
             var user = this.User.GetUserData();
-            Post model = new Post()
+            PostComment model = new PostComment()
             {
-                PostId = 0,
-                Image = "Uploads/PostImages/no-image.png"
+                CommentId = 0,
             };
-            ViewBag.Title = "Nhập bài viết mới";
+            ViewBag.Title = "Nhập bình luận mới";
             return View("Edit", model);
         }
 
@@ -109,38 +108,35 @@ namespace SV19T1081011.AdminTool.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Save(Post model, HttpPostedFileBase uploadImage)
+        public ActionResult Save(PostComment model)
         {
-            if (string.IsNullOrWhiteSpace(model.Title))
-                ModelState.AddModelError(nameof(model.Title), "*");
+            if (string.IsNullOrWhiteSpace(model.CommentContent))
+                ModelState.AddModelError(nameof(model.CommentContent), "*");
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Title = model.PostId == 0 ? "Nhập bài viết mới" : "Cập nhật bài viết";
+                ViewBag.Title = model.CommentId == 0 ? "Nhập bài viết mới" : "Cập nhật bài viết";
                 ViewBag.Message = "Vui lòng nhập đầy đủ thông tin tại các mục có đánh dấu <span class='field-validation-error'>*</span>";
                 return View("Edit", model);
             }
 
-            if (string.IsNullOrWhiteSpace(model.FullContent))
-                model.FullContent = "";
-
             try
             {
-                if (model.PostId == 0)
+                if (model.CommentId == 0)
                 {
                     model.CreatedTime = DateTime.Now;
                     model.UserId = Converter.ToLong(this.User.GetUserData().UserId);
-                    model.PostId = ContentService.AddPost(model);
+                    model.CommentId = ContentService.AddComment(model);
                 }
                 else
                 {
-                    ContentService.UpdatePost(model);
+                    ContentService.UpdateComment(model);
                 }
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.Title = model.PostId == 0 ? "Nhập bài viết mới" : "Cập nhật bài viết";
+                ViewBag.Title = model.PostId == 0 ? "Nhập bình luận mới" : "Cập nhật bình luận";
                 ViewBag.Message = ex.Message;
                 return View("Edit", model);
             }
