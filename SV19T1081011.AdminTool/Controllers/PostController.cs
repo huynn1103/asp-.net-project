@@ -91,7 +91,6 @@ namespace SV19T1081011.AdminTool.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            var user = this.User.GetUserData();
             Post model = new Post()
             {
                 PostId = 0,
@@ -136,6 +135,10 @@ namespace SV19T1081011.AdminTool.Controllers
         {
             if (string.IsNullOrWhiteSpace(model.Title))
                 ModelState.AddModelError(nameof(model.Title), "*");
+            if (string.IsNullOrWhiteSpace(model.BriefContent))
+                ModelState.AddModelError(nameof(model.BriefContent), "*");
+            if (string.IsNullOrWhiteSpace(model.FullContent))
+                ModelState.AddModelError(nameof(model.FullContent), "*");
 
             if (!ModelState.IsValid)
             {

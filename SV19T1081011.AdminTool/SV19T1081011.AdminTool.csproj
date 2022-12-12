@@ -132,6 +132,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserAccountSearchOutput.cs" />
     <Compile Include="Models\CategorySearchOutput.cs" />
     <Compile Include="Models\PaginationSearchInput.cs" />
     <Compile Include="Models\PaginationSearchOutput.cs" />
@@ -6531,7 +6532,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
-    <Content Include="Views\UserAccount\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Search.cshtml" />
@@ -6545,6 +6545,10 @@
     <Content Include="Views\Comment\Search.cshtml" />
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Delete.cshtml" />
+    <Content Include="Views\UserAccount\Search.cshtml" />
+    <Content Include="Views\UserAccount\Index.cshtml" />
+    <Content Include="Views\UserAccount\Edit.cshtml" />
+    <Content Include="Views\UserAccount\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

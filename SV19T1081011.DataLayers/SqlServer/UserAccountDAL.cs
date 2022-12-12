@@ -91,6 +91,7 @@ namespace SV19T1081011.DataLayers.SqlServer
                                         WHERE (@SearchValue = '') 
                                            OR ((UserName LIKE @SearchValue) OR (FirstName + ' ' + LastName LIKE @SearchValue) OR (Email LIKE @SearchValue) OR (Phone LIKE @SearchValue))";
                     cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@SearchValue", searchValue);
                     count = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 connection.Close();

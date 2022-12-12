@@ -25,10 +25,9 @@
                     <div class="form-group-sm">
                         <label>Tiêu đề: @Html.ValidationMessageFor(m => m.Title)</label>
                         @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @autofocus = "autofocus" })
-
                     </div>
                     <div class="form-group-sm">
-                        <label>Tóm tắt bài viết:</label>
+                        <label>Tóm tắt bài viết: @Html.ValidationMessageFor(m => m.BriefContent)</label>
                         @Html.TextAreaFor(m => m.BriefContent, new { @class = "form-control", @rows = "3" })
                     </div>
                     <div class="form-group-sm">

@@ -231,7 +231,7 @@ namespace SV19T1081011.BusinessLayers
 
         #region Post Comment
         /// <summary>
-        /// Tìm kiếm, hiển thị danh sách comment dưới dạng phân trang
+        /// Tìm kiếm, hiển thị danh sách bình luận dưới dạng phân trang
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
@@ -245,7 +245,7 @@ namespace SV19T1081011.BusinessLayers
             return postCommentDB.List(page, pageSize, searchValue, postId).ToList();
         }
         /// <summary>
-        /// Lấy comment theo id
+        /// Lấy bình luận theo id
         /// </summary>
         /// <param name="postId"></param>
         /// <returns></returns>
@@ -254,7 +254,7 @@ namespace SV19T1081011.BusinessLayers
             return postCommentDB.Get(commentId);
         }
         /// <summary>
-        /// Bổ sung comment
+        /// Bổ sung bình luận
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -263,7 +263,7 @@ namespace SV19T1081011.BusinessLayers
             return postCommentDB.Add(data);
         }
         /// <summary>
-        /// Cập nhật comment
+        /// Cập nhật bình luận
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -272,7 +272,7 @@ namespace SV19T1081011.BusinessLayers
             return postCommentDB.Update(data);
         }
         /// <summary>
-        /// Xóa comment
+        /// Xóa bình luận
         /// </summary>
         /// <param name="postId"></param>
         /// <returns></returns>

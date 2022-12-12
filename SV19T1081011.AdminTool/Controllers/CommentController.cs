@@ -93,7 +93,6 @@ namespace SV19T1081011.AdminTool.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            var user = this.User.GetUserData();
             PostComment model = new PostComment()
             {
                 CommentId = 0,
@@ -115,7 +114,7 @@ namespace SV19T1081011.AdminTool.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Title = model.CommentId == 0 ? "Nhập bài viết mới" : "Cập nhật bài viết";
+                ViewBag.Title = model.CommentId == 0 ? "Nhập bình luận mới" : "Cập nhật bình luận";
                 ViewBag.Message = "Vui lòng nhập đầy đủ thông tin tại các mục có đánh dấu <span class='field-validation-error'>*</span>";
                 return View("Edit", model);
             }

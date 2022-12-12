@@ -78,5 +78,40 @@ namespace SV19T1081011.BusinessLayers
         {
             return userAccountDB.Update(userId, firstName, lastName, email, phone);
         }
+
+        /// <summary>
+        /// Bổ sung tài khoản
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static long AddUserAccount(UserAccount data)
+        {
+            return userAccountDB.Add(data);
+        }
+
+        /// <summary>
+        /// Xóa tài khoản
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public static bool DeleteUserAccount(long userId)
+        {
+            return userAccountDB.Delete(userId);
+        }
+
+        /// <summary>
+        /// Tìm kiếm, hiển thị danh sách tài khoản dưới dạng phân trang
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="searchValue"></param>
+        /// <param name="categoryId"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static List<UserAccount> ListUserAccounts(int page, int pageSize, string searchValue, out int rowCount)
+        {
+            rowCount = userAccountDB.Count(searchValue);
+            return userAccountDB.List(page, pageSize, searchValue).ToList();
+        }
     }
 }
