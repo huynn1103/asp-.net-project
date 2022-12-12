@@ -14,66 +14,68 @@
                 @Html.Raw(ViewBag.Message)
             </div>
         }
-        <form action="~/UserAccount/Save" method="post">
-            @Html.HiddenFor(m => m.UserId)
-            <div class="form-group-sm">
-                @if (Model.UserId != 0)
-                {
-                    <label>Tên đăng nhập:</label>
-                    <p class="form-control">@Model.UserName</p>
-                }
-                else
-                {
-                    <label>Tên đăng nhập: @Html.ValidationMessageFor(m => m.UserName)</label>
-                    @Html.TextAreaFor(m => m.UserName, new { @class = "form-control", @rows = "1" })
-                }
-            </div>
-            @if (Model.UserId == 0)
-            {
-                <div class="form-group-sm">
-                    <label>Password: @Html.ValidationMessageFor(m => m.Password)</label>
-                    @Html.TextAreaFor(m => m.Password, new { @class = "form-control", @rows = "1" })
-                </div>
-            }
-            <div class="form-group-sm">
-                <label>Họ và tên đệm: @Html.ValidationMessageFor(m => m.FirstName)</label>
-                @Html.TextAreaFor(m => m.FirstName, new { @class = "form-control", @rows = "1" })
-            </div>
-            <div class="form-group-sm">
-                <label>Tên: @Html.ValidationMessageFor(m => m.LastName)</label>
-                @Html.TextAreaFor(m => m.LastName, new { @class = "form-control", @rows = "1" })
-            </div>
-            <div class="form-group-sm">
-                <label>Email: @Html.ValidationMessageFor(m => m.Email)</label>
-                @Html.TextAreaFor(m => m.Email, new { @class = "form-control", @rows = "1" })
-            </div>
-            <div class="form-group-sm">
-                <label>Số điện thoại: @Html.ValidationMessageFor(m => m.Phone)</label>
-                @Html.TextAreaFor(m => m.Phone, new { @class = "form-control", @rows = "1" })
-            </div>
+    <form action="~/UserAccount/Save" method="post">
+        @Html.HiddenFor(m => m.UserId)
+        <div class="form-group-sm">
             @if (Model.UserId != 0)
             {
-                <div class="form-group-sm">
-                    <label>Thời điểm đăng ký:</label>
-                    <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.RegisteredTime)</p>
-                </div>
+                <label>Tên đăng nhập:</label>
+                <p class="form-control">@Model.UserName</p>
+                @Html.HiddenFor(m => m.UserName)
             }
             else
             {
-                <div class="form-group-sm">
-                    <label>Vai trò: @Html.ValidationMessageFor(m => m.GroupName)</label>
-                    @Html.TextAreaFor(m => m.GroupName, new { @class = "form-control", @rows = "1" })
-                </div>
+                <label>Tên đăng nhập: @Html.ValidationMessageFor(m => m.UserName)</label>
+                @Html.TextAreaFor(m => m.UserName, new { @class = "form-control", @rows = "1" })
             }
+        </div>
+        @if (Model.UserId == 0)
+        {
             <div class="form-group-sm">
-                <button type="submit" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-floppy-disk"></i>
-                    Lưu tài khoản
-                </button>
-                <a href="~/UserAccount" class="btn btn-warning">
-                    Quay lại
-                </a>
+                <label>Password: @Html.ValidationMessageFor(m => m.Password)</label>
+                @Html.TextAreaFor(m => m.Password, new { @class = "form-control", @rows = "1" })
             </div>
-        </form>
+        }
+        <div class="form-group-sm">
+            <label>Họ và tên đệm: @Html.ValidationMessageFor(m => m.FirstName)</label>
+            @Html.TextAreaFor(m => m.FirstName, new { @class = "form-control", @rows = "1" })
+        </div>
+        <div class="form-group-sm">
+            <label>Tên: @Html.ValidationMessageFor(m => m.LastName)</label>
+            @Html.TextAreaFor(m => m.LastName, new { @class = "form-control", @rows = "1" })
+        </div>
+        <div class="form-group-sm">
+            <label>Email: @Html.ValidationMessageFor(m => m.Email)</label>
+            @Html.TextAreaFor(m => m.Email, new { @class = "form-control", @rows = "1" })
+        </div>
+        <div class="form-group-sm">
+            <label>Số điện thoại: @Html.ValidationMessageFor(m => m.Phone)</label>
+            @Html.TextAreaFor(m => m.Phone, new { @class = "form-control", @rows = "1" })
+        </div>
+        @if (Model.UserId != 0)
+        {
+            <div class="form-group-sm">
+                <label>Thời điểm đăng ký:</label>
+                <p class="form-control">@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.RegisteredTime)</p>
+            </div>
+            @Html.HiddenFor(m => m.RegisteredTime)
+        }
+        else
+        {
+            <div class="form-group-sm">
+                <label>Vai trò: @Html.ValidationMessageFor(m => m.GroupName)</label>
+                @Html.TextAreaFor(m => m.GroupName, new { @class = "form-control", @rows = "1" })
+            </div>
+        }
+        <div class="form-group-sm">
+            <button type="submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-floppy-disk"></i>
+                Lưu tài khoản
+            </button>
+            <a href="~/UserAccount" class="btn btn-warning">
+                Quay lại
+            </a>
+        </div>
+    </form>
     </div>
 </div>
