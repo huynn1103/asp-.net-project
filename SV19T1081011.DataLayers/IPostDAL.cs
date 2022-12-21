@@ -13,6 +13,21 @@ namespace SV19T1081011.DataLayers
     public interface IPostDAL
     {
         /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        IList<Post> MostRecentList();
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        IList<Post> TrendingList();
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        IList<Post> FeaturedList();
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="page"></param>

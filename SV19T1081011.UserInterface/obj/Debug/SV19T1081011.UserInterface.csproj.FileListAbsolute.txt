@@ -77,3 +77,11 @@ D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\obj\Debug\
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\obj\Debug\SV19T1081011.UserInterface.csproj.CopyComplete
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\obj\Debug\SV19T1081011.UserInterface.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\obj\Debug\SV19T1081011.UserInterface.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.BusinessLayers.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.DataLayers.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.DomainModels.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.Lib.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.BusinessLayers.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.DataLayers.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.DomainModels.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.UserInterface\bin\SV19T1081011.Lib.pdb

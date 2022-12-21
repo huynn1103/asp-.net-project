@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SV19T1081011.BusinessLayers;
+using SV19T1081011.DomainModels;
+using SV19T1081011.Lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +13,14 @@ namespace SV19T1081011.UserInterface.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Models.HomeOutput model = new Models.HomeOutput()
+            {
+                Categories = ContentService.ListCategories(),
+                MostRecentPosts = ContentService.MostRecentList(),
+                TrendingPosts = ContentService.TrendingList(),
+                FeaturedPosts = ContentService.FeaturedList()
+            };
+            return View(model);
         }
 
         public ActionResult About()

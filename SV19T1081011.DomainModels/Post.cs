@@ -58,6 +58,7 @@ namespace SV19T1081011.DomainModels
         /// <summary>
         /// 
         /// </summary>
+        public int ViewCount { get; set; }
         public virtual Author Creator { get; set; }
         /// <summary>
         /// 

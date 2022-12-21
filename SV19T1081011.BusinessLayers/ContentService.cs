@@ -227,6 +227,30 @@ namespace SV19T1081011.BusinessLayers
         {
             return postDB.Delete(postId);
         }
+        /// <summary>
+        /// Lấy 1 bài viết gần nhất của mỗi phân loại tin
+        /// </summary>
+        /// <returns></returns>
+        public static List<Post> MostRecentList()
+        {
+            return postDB.MostRecentList().ToList();
+        }
+        /// <summary>
+        /// Lấy 5 bài viết có lượt xem cao nhất
+        /// </summary>
+        /// <returns></returns>
+        public static List<Post> TrendingList()
+        {
+            return postDB.TrendingList().ToList();
+        }
+        /// <summary>
+        /// Lấy 10 bài viết gần nhất của mỗi phân loại tin
+        /// </summary>
+        /// <returns></returns>
+        public static List<Post> FeaturedList()
+        {
+            return postDB.FeaturedList().ToList();
+        }
         #endregion
 
         #region Post Comment

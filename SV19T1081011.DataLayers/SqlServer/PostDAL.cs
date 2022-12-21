@@ -48,7 +48,7 @@ namespace SV19T1081011.DataLayers.SqlServer
                     FirstName = Convert.ToString(dbReader["FirstName"]),
                     LastName = Convert.ToString(dbReader["LastName"]),
                     Email = Convert.ToString(dbReader["Email"]),
-                    Phone = Convert.ToString(dbReader["Phone"])                    
+                    Phone = Convert.ToString(dbReader["Phone"])
                 },
                 Category = new PostCategory()
                 {
@@ -228,7 +228,7 @@ namespace SV19T1081011.DataLayers.SqlServer
                     cmd.Parameters.AddWithValue("@FullContent", data.FullContent ?? "");
                     cmd.Parameters.AddWithValue("@UrlTitle", data.UrlTitle ?? "");
                     cmd.Parameters.AddWithValue("@Image", data.Image ?? "");
-                    cmd.Parameters.AddWithValue("@AllowComment", data.AllowComment);                    
+                    cmd.Parameters.AddWithValue("@AllowComment", data.AllowComment);
                     cmd.Parameters.AddWithValue("@IsHidden", data.IsHidden);
                     cmd.Parameters.AddWithValue("@UserId", data.UserId);
                     cmd.Parameters.AddWithValue("@CategoryId", data.CategoryId);
@@ -291,7 +291,7 @@ namespace SV19T1081011.DataLayers.SqlServer
                                         SET     Image = @Image
                                         WHERE   PostId = @PostId";
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@PostId", postId);                    
+                    cmd.Parameters.AddWithValue("@PostId", postId);
                     cmd.Parameters.AddWithValue("@Image", image);
 
                     result = cmd.ExecuteNonQuery() > 0;
@@ -314,13 +314,103 @@ namespace SV19T1081011.DataLayers.SqlServer
                 {
                     cmd.CommandText = @"DELETE FROM Post WHERE PostId = @PostId";
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@PostId", postId);                    
+                    cmd.Parameters.AddWithValue("@PostId", postId);
 
                     result = cmd.ExecuteNonQuery() > 0;
                 }
                 connection.Close();
             }
             return result;
+        }
+        public IList<Post> MostRecentList()
+        {
+            List<Post> data = new List<Post>();
+            using (SqlConnection connection = OpenConnection())
+            {
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT	*
+                                        FROM	Post AS P JOIN
+		                                        PostCategory AS C ON P.CategoryId = C.CategoryId JOIN
+		                                        UserAccount AS U ON P.UserId = U.UserId
+                                        WHERE	CreatedTime >= (
+	                                        SELECT	MAX(P2.CreatedTime)
+	                                        FROM	Post AS P2
+	                                        WHERE	P.CategoryId = P2.CategoryId
+	                                        GROUP BY	P2.CategoryId
+                                        )";
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader dbReader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while (dbReader.Read())
+                        {
+                            data.Add(CreatePostFromDbReader(dbReader));
+                        }
+                        dbReader.Close();
+                    }
+                }
+                connection.Close();
+            }
+            return data;
+        }
+        public IList<Post> TrendingList()
+        {
+            List<Post> data = new List<Post>();
+            using (SqlConnection connection = OpenConnection())
+            {
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT	TOP 5 *
+                                        FROM	Post AS P JOIN
+		                                        PostCategory AS C ON P.CategoryId = C.CategoryId JOIN
+		                                        UserAccount AS U ON P.UserId = U.UserId
+                                        ORDER BY	P.ViewCount DESC";
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader dbReader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while (dbReader.Read())
+                        {
+                            data.Add(CreatePostFromDbReader(dbReader));
+                        }
+                        dbReader.Close();
+                    }
+                }
+                connection.Close();
+            }
+            return data;
+        }
+        public IList<Post> FeaturedList()
+        {
+            List<Post> data = new List<Post>();
+            using (SqlConnection connection = OpenConnection())
+            {
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT	*
+                                        FROM	Post AS P JOIN
+		                                        PostCategory AS C ON P.CategoryId = C.CategoryId JOIN
+		                                        UserAccount AS U ON P.UserId = U.UserId
+                                        WHERE	P.CreatedTime >= ANY (
+	                                        SELECT	TOP 10 P2.CreatedTime
+	                                        FROM	Post AS P2
+	                                        WHERE	P.CategoryId = P2.CategoryId
+	                                        GROUP BY	P2.CategoryId, P2.CreatedTime
+	                                        ORDER BY	P2.CreatedTime DESC
+                                        )
+                                        ORDER BY	C.DisplayOrder";
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader dbReader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while (dbReader.Read())
+                        {
+                            data.Add(CreatePostFromDbReader(dbReader));
+                        }
+                        dbReader.Close();
+                    }
+                }
+                connection.Close();
+            }
+            return data;
         }
     }
 }
