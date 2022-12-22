@@ -13,7 +13,7 @@ namespace SV19T1081011.UserInterface.Controllers
     {
         public ActionResult Index()
         {
-            Models.HomeOutput model = new Models.HomeOutput()
+            Models.UserInterfaceOutput model = new Models.UserInterfaceOutput()
             {
                 Categories = ContentService.ListCategories(),
                 MostRecentPosts = ContentService.MostRecentList(),
@@ -23,18 +23,16 @@ namespace SV19T1081011.UserInterface.Controllers
             return View(model);
         }
 
-        public ActionResult About()
+        public ActionResult Category(string categoryUrlName)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            Models.UserInterfaceOutput model = new Models.UserInterfaceOutput()
+            {
+                Categories = ContentService.ListCategories(),
+                MostRecentPosts = ContentService.MostRecentList(),
+                Category = ContentService.GetCategory(categoryUrlName),
+                List = ContentService.ListPosts(), // theo category
+            };
+            return View(model);
         }
     }
 }
