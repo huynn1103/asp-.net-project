@@ -132,6 +132,7 @@ namespace SV19T1081011.AdminTool.Controllers
             {
                 if (model.UserId == 0)
                 {
+                    model.Password = StringUtils.Md5(model.Password);
                     model.RegisteredTime = DateTime.Now;
                     model.UserId = UserAccountService.AddUserAccount(model);
                 }

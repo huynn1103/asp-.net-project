@@ -67,7 +67,7 @@ namespace SV19T1081011.AdminTool.Controllers
                 {
                     UserId = userAccount.UserId.ToString(),
                     UserName = userAccount.UserName,
-                    FullName = $"{userAccount.FirstName} {userAccount.LastName}",
+                    FullName = $"{userAccount.LastName} {userAccount.FirstName}",
                     GroupName = userAccount.GroupName,
                     ClientIP = Request.UserHostAddress,
                     SessionId = Session.SessionID

@@ -30,8 +30,8 @@ namespace SV19T1081011.DataLayers.SqlServer
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserAccount(UserName, FirstName, LastName, Email, Phone, Password, RegisteredTime, IsLocked)
-                                        VALUES (@UserName, @FirstName, @LastName, @Email, @Phone, @Password, @RegisteredTime, @IsLocked);
+                    cmd.CommandText = @"INSERT INTO UserAccount(UserName, FirstName, LastName, Email, Phone, Password, GroupName, RegisteredTime, IsLocked)
+                                        VALUES (@UserName, @FirstName, @LastName, @Email, @Phone, @Password, @GroupName, @RegisteredTime, @IsLocked);
                                         SELECT SCOPE_IDENTITY();";
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@UserName", data.UserName);
@@ -40,6 +40,7 @@ namespace SV19T1081011.DataLayers.SqlServer
                     cmd.Parameters.AddWithValue("@Email", data.Email);
                     cmd.Parameters.AddWithValue("@Phone", data.Phone);
                     cmd.Parameters.AddWithValue("@Password", data.Password);
+                    cmd.Parameters.AddWithValue("@GroupName", data.GroupName);
                     cmd.Parameters.AddWithValue("@RegisteredTime", data.RegisteredTime);
                     cmd.Parameters.AddWithValue("@IsLocked", data.IsLocked);
 

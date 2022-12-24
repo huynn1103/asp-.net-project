@@ -57,6 +57,7 @@ D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\Newtonsoft
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.BusinessLayers.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.DataLayers.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.DomainModels.dll
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.Lib.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\System.Web.Helpers.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\System.Web.Mvc.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\System.Web.Optimization.dll
@@ -68,6 +69,7 @@ D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\WebGrease.
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.BusinessLayers.pdb
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.DataLayers.pdb
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.DomainModels.pdb
+D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.Lib.pdb
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\System.Web.Helpers.xml
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\System.Web.Mvc.xml
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\System.Web.Optimization.xml
@@ -83,5 +85,3 @@ D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\obj\Debug\SV19
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\obj\Debug\SV19T1081011.AdminTool.csproj.CopyComplete
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\obj\Debug\SV19T1081011.AdminTool.dll
 D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\obj\Debug\SV19T1081011.AdminTool.pdb
-D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.Lib.dll
-D:\App Repository\ASPProjects\SV19T1081011\SV19T1081011.AdminTool\bin\SV19T1081011.Lib.pdb

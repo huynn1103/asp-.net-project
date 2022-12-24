@@ -1,0 +1,112 @@
+﻿@model SV19T1081011.UserInterface.Models.UserInterfaceOutput
+<main id="main">
+    <section class="single-post-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 post-content" data-aos="fade-up">
+                    <!-- ======= Single Post Content ======= -->
+                    <div style="text-align: justify;" class="single-post">
+                        <div class="post-meta">
+                            <span class="date">@Model.Post.Category.CategoryName</span> <span class="mx-1">&bullet;</span> <span>@Html.Raw(string.Format("{0:dd/MM/yyyy}", Model.Post.CreatedTime))</span>
+                        </div>
+                        <h1 class="mb-5">@Model.Post.Title</h1>
+                        <p>
+                            <span class="firstcharacter">@Model.Post.BriefContent[0]</span>@Model.Post.BriefContent.Substring(1)
+                        </p>
+                        <br />
+                        <img src="http://localhost:52854/@Model.Post.Image" alt="" class="img-fluid">
+                        @Html.Raw(Model.Post.FullContent)
+                    </div><!-- End Single Post Content -->
+                    @{
+                        var userData = User.GetUserData();
+                    }
+                    <!-- ======= Comments ======= -->
+                    <div class="comments">
+                        <h5 class="comment-title py-4">@Model.Comments.Count bình luận</h5>
+                        @foreach (var comment in Model.Comments)
+                        {
+                            if (comment.IsAccepted)
+                            {
+                                <div class="comment d-flex">
+                                    <div class="flex-shrink-1 ms-2 ms-sm-3" style="margin-bottom: 1em;">
+                                        <div class="comment-meta d-flex">
+                                            <h6 class="me-2">@comment.Creator.FullName</h6>
+                                            <span class="text-muted">@comment.CreatedTime</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            @comment.CommentContent
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (userData != null && comment.Creator.UserId.ToString() == userData.UserId)
+                                {
+                                    <div style="opacity: 0.5;" class="comment d-flex">
+                                        <div class="flex-shrink-1 ms-2 ms-sm-3" style="margin-bottom: 1em;">
+                                            <div class="comment-meta d-flex">
+                                                <h6 class="me-2">@comment.Creator.FullName</h6>
+                                                <span class="text-muted">@comment.CreatedTime</span>
+                                            </div>
+                                            <div class="comment-body">
+                                                @comment.CommentContent
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="comment d-flex">
+                                        <div class="flex-shrink-1 ms-2 ms-sm-3" style="margin-bottom: 1em;">
+                                            <div class="comment-meta d-flex">
+                                                <h6 class="me-2">1 bình luận đã bị ẩn</h6>
+                                                <span class="text-muted"></span>
+                                            </div>
+                                            <div class="comment-body">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div><!-- End Comments -->
+                    @if (Model.Post.AllowComment)
+                    {
+                        if (userData != null)
+                        {
+                            <!-- ======= Comments Form ======= -->
+                            <div class="row justify-content-center mt-5">
+                                <div class="col-lg-12">
+                                    <h5 class="comment-title">Để lại bình luận</h5>
+                                    <div class="row">
+                                        <form action="~/@Model.Post.Category.CategoryUrlName/@Model.Post.UrlTitle" method="post">
+                                            <div class="col-12 mb-3">
+                                                <label for="comment-message">Nội dung</label>
+                                                <textarea class="form-control" name="commentContent" id="comment-message" placeholder="Nhập bình luận" cols="30"
+                                                          rows="5"></textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="submit" class="btn btn-primary" value="Đăng tải">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Comments Form -->
+                        }
+                        else
+                        {
+                            <div class="row mt-2">
+                                <div class="col-lg-12">
+                                    <h2 class="comment-title">Vui lòng <a style="text-decoration: underline;" href="~/Account/Login?categoryUrlName=@Model.Post.Category.CategoryUrlName&urlTitle=@Model.Post.UrlTitle">đăng nhập</a> để có thể bình luận.</h2>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->

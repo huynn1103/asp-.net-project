@@ -1,0 +1,38 @@
+﻿@model SV19T1081011.UserInterface.Models.UserInterfaceOutput
+<main id="main">
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <div class="form">
+                <form action="~/Account/Login" method="post" role="form" class="php-email-form">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Tên đăng nhập">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Mật khẩu">
+                            </div>
+                            <div class="form-group col-md-12" style="display: none;">
+                                <input type="text" class="form-control" name="categoryUrlName" id="categoryUrlName" value="@Request.QueryString["categoryUrlName"]">
+                            </div>
+                            <div class="form-group col-md-12" style="display: none;">
+                                <input type="text" class="form-control" name="urlTitle" id="urlTitle" value="@Request.QueryString["urlTitle"]">
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                @Html.ValidationMessage("", new { @style = "color: #ff0000;" })
+                            </div>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit">Đăng nhập</button>
+                    </div>
+                </form>
+            </div><!-- End Contact Form -->
+
+        </div>
+    </section>
+
+</main><!-- End #main -->

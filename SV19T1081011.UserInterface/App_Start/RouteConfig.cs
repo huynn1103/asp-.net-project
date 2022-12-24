@@ -14,6 +14,18 @@ namespace SV19T1081011.UserInterface
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Account",
+                url: "Account/{action}",
+                defaults: new { controller = "Account", action = "Login", }
+            );
+
+            routes.MapRoute(
+                name: "Post",
+                url: "{categoryUrlName}/{urlTitle}",
+                defaults: new { controller = "Home", action = "Post" }
+            );
+
+            routes.MapRoute(
                 name: "Category",
                 url: "{categoryUrlName}",
                 defaults: new { controller = "Home", action = "Category" }
@@ -21,7 +33,7 @@ namespace SV19T1081011.UserInterface
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

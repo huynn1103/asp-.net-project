@@ -22,15 +22,54 @@ namespace SV19T1081011.UserInterface.Controllers
             };
             return View(model);
         }
-
         public ActionResult Category(string categoryUrlName)
         {
+            PostCategory category = ContentService.GetCategory(categoryUrlName);
+            if (category == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            int rowCount = 0;
             Models.UserInterfaceOutput model = new Models.UserInterfaceOutput()
             {
                 Categories = ContentService.ListCategories(),
                 MostRecentPosts = ContentService.MostRecentList(),
-                Category = ContentService.GetCategory(categoryUrlName),
-                List = ContentService.ListPosts(), // theo category
+                Category = category,
+                List = ContentService.ListPosts(1, 0, "", category.CategoryId, out rowCount),
+            };
+            return View(model);
+        }
+
+        public ActionResult Post(string categoryUrlName, string urlTitle, string commentContent = "")
+        {
+            Post post = ContentService.GetPost(urlTitle);
+            if (post == null || (post != null && post.Category.CategoryUrlName != categoryUrlName))
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(commentContent))
+            {
+                PostComment data = new PostComment
+                {
+                    CreatedTime = DateTime.Now,
+                    CommentContent = commentContent,
+                    IsAccepted = false,
+                    UserId = Converter.ToLong(this.User.GetUserData().UserId),
+                    PostId = post.PostId
+                };
+                ContentService.AddComment(data);
+            }
+
+            int rowCount = 0;
+            Models.UserInterfaceOutput model = new Models.UserInterfaceOutput()
+            {
+                Categories = ContentService.ListCategories(),
+                MostRecentPosts = ContentService.MostRecentList(),
+                Post = post,
+                Comments = ContentService.ListComments(1, 0, "", post.PostId, out rowCount)
             };
             return View(model);
         }

@@ -1,97 +1,29 @@
 ﻿@model SV19T1081011.UserInterface.Models.UserInterfaceOutput
 <main id="main">
-
     <!-- ======= Search Results ======= -->
     <section id="search-result" class="search-result">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="category-title">@Model.Category.CategoryName</h3>
-
-                    <div class="d-md-flex post-entry-2 small-img">
-                        <a href="single-post.html" class="me-4 thumbnail">
-                            <img src="assets/img/post-landscape-6.jpg" alt="" class="img-fluid">
-                        </a>
-                        <div>
-                            <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                            <h3><a href="single-post.html">What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</a></h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas.</p>
-                            <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
-                                <div class="name">
-                                    <h3 class="m-0 p-0">Wade Warren</h3>
+                    @foreach (var item in Model.List)
+                    {
+                        <div class="d-md-flex post-entry-2 small-img">
+                            <a href="~/@item.Category.CategoryUrlName/@item.UrlTitle" class="me-4 thumbnail">
+                                <img src="http://localhost:52854/@item.Image" alt="" class="img-fluid">
+                            </a>
+                            <div>
+                                <div class="post-meta"><span class="date">@item.Category.CategoryName</span> <span class="mx-1">&bullet;</span> <span>@Html.Raw(string.Format("{0:dd/MM/yyyy}", @item.CreatedTime))</span></div>
+                                <h3><a href="~/@item.Category.CategoryUrlName/@item.UrlTitle">@item.Title</a></h3>
+                                <p>@item.BriefContent</p>
+                                <div class="d-flex align-items-center author">
+                                    <div class="name">
+                                        <h3 class="m-0 p-0">@item.Creator.FullName</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="d-md-flex post-entry-2 small-img">
-                        <a href="single-post.html" class="me-4 thumbnail">
-                            <img src="assets/img/post-landscape-1.jpg" alt="" class="img-fluid">
-                        </a>
-                        <div>
-                            <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                            <h3><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas.</p>
-                            <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
-                                <div class="name">
-                                    <h3 class="m-0 p-0">Wade Warren</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-md-flex post-entry-2 small-img">
-                        <a href="single-post.html" class="me-4 thumbnail">
-                            <img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid">
-                        </a>
-                        <div>
-                            <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                            <h3><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas.</p>
-                            <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
-                                <div class="name">
-                                    <h3 class="m-0 p-0">Wade Warren</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-md-flex post-entry-2 small-img">
-                        <a href="single-post.html" class="me-4 thumbnail">
-                            <img src="assets/img/post-landscape-3.jpg" alt="" class="img-fluid">
-                        </a>
-                        <div>
-                            <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                            <h3><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas.</p>
-                            <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
-                                <div class="name">
-                                    <h3 class="m-0 p-0">Wade Warren</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-md-flex post-entry-2 small-img">
-                        <a href="single-post.html" class="me-4 thumbnail">
-                            <img src="assets/img/post-landscape-4.jpg" alt="" class="img-fluid">
-                        </a>
-                        <div>
-                            <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                            <h3><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas.</p>
-                            <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
-                                <div class="name">
-                                    <h3 class="m-0 p-0">Wade Warren</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
 
                     <!-- Paging -->
                     <div class="text-center py-4">

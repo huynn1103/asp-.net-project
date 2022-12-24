@@ -17,5 +17,7 @@ namespace SV19T1081011.UserInterface.Models
         public List<Post> FeaturedPosts { get; set; }
         public PostCategory Category { get; set; }
         public List<Post> List { get; set; }
+        public Post Post { get; set; }
+        public List<PostComment> Comments { get; set; }
     }
 }
