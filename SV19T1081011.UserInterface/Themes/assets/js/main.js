@@ -119,10 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    searchClose.addEventListener("click", (e) => {
-      e.preventDefault();
-      searchWrap.classList.remove("active");
-    });
+    if (searchClose) {
+        searchClose.addEventListener("click", (e) => {
+            e.preventDefault();
+            searchWrap.classList.remove("active");
+        });
+    }
 
     /**
      * Initiate glightbox

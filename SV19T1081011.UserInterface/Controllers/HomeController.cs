@@ -22,7 +22,7 @@ namespace SV19T1081011.UserInterface.Controllers
             };
             return View(model);
         }
-        public ActionResult Category(string categoryUrlName)
+        public ActionResult Category(string categoryUrlName, string searchValue = "", string page = "1")
         {
             PostCategory category = ContentService.GetCategory(categoryUrlName);
             if (category == null)
@@ -30,13 +30,14 @@ namespace SV19T1081011.UserInterface.Controllers
                 return RedirectToAction("Index");
             }
 
-            int rowCount = 0;
+            int rowCount = 0, pageNumber = Converter.ToInt(page);
             Models.UserInterfaceOutput model = new Models.UserInterfaceOutput()
             {
                 Categories = ContentService.ListCategories(),
                 MostRecentPosts = ContentService.MostRecentList(),
                 Category = category,
-                List = ContentService.ListPosts(1, 0, "", category.CategoryId, out rowCount),
+                List = ContentService.ListPosts(pageNumber, 5, searchValue, category.CategoryId, out rowCount),
+                RowCount = rowCount
             };
             return View(model);
         }
@@ -69,7 +70,7 @@ namespace SV19T1081011.UserInterface.Controllers
                 Categories = ContentService.ListCategories(),
                 MostRecentPosts = ContentService.MostRecentList(),
                 Post = post,
-                Comments = ContentService.ListComments(1, 0, "", post.PostId, out rowCount)
+                Comments = ContentService.ListComments(1, 0, "", post.PostId, out rowCount),
             };
             return View(model);
         }

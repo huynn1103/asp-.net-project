@@ -20,27 +20,24 @@
             @if (Model.Category != null)
             {
                 <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+                <div class="search-form-wrap js-search-form-wrap">
+                    <form action="~/@Model.Category.CategoryUrlName" method="get" id="searchForm" class="search-form">
+                        <input name="searchValue" type="text" placeholder="Tìm kiếm..." class="form-control" value='@Request.QueryString["searchValue"]'>
+                        <button class="btn js-search-close"><span class="bi-x"></span></button>
+                        <span style="cursor: pointer;" class="icon bi-search" onclick="document.getElementById('searchForm').submit();"></span>
+                    </form>
+                </div>
             }
             else
             {
                 var userData = User.GetUserData();
                 if (userData != null)
                 {
-                    <span>Xin chào @userData.FullName</span>
+                    <span>Xin chào @userData.FullName </span>
+                    <a style="position: relative; bottom: 0.2em;" href="~/Account/Logout"><img src="~/Themes/assets/img/log-out-removebg-preview.png" alt="HTML tutorial" style="width:1em;height:1em;"></a>
                 }
             }
             <i class="bi bi-list mobile-nav-toggle"></i>
-
-            <!-- ======= Search Form ======= -->
-            <div class="search-form-wrap js-search-form-wrap">
-                <form action="search-result.html" class="search-form">
-                    <input type="text" placeholder="Tìm kiếm..." class="form-control">
-                    <button class="btn js-search-close"><span class="bi-x"></span></button>
-                    <span class="icon bi-search"></span>
-                </form>
-            </div><!-- End Search Form -->
         </div>
-
     </div>
-
 </header>

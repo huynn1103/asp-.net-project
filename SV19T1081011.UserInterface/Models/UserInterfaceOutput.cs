@@ -19,5 +19,6 @@ namespace SV19T1081011.UserInterface.Models
         public List<Post> List { get; set; }
         public Post Post { get; set; }
         public List<PostComment> Comments { get; set; }
+        public int RowCount { get; set; }
     }
 }
