@@ -72,6 +72,9 @@ namespace SV19T1081011.UserInterface.Controllers
                 Post = post,
                 Comments = ContentService.ListComments(1, 0, "", post.PostId, out rowCount),
             };
+
+            model.Comments.Reverse();
+
             return View(model);
         }
     }

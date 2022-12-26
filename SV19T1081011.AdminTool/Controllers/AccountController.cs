@@ -190,7 +190,7 @@ namespace SV19T1081011.AdminTool.Controllers
                 return View("ChangePassword");
             }
 
-            if (UserAccountService.ChangePassword(userName, oldPassword, newPassword))
+            if (UserAccountService.ChangePassword(userName, CryptHelper.EncodeMD5(oldPassword), CryptHelper.EncodeMD5(newPassword)))
             {
                 return RedirectToAction("Index");
             }
